@@ -10,6 +10,7 @@ import {
   CreditCard,
   Heart,
   LogOut,
+  Mail,
   MapPin,
   Package,
   Phone,
@@ -620,7 +621,7 @@ function ProfilePage() {
                     <Detail icon={<Phone className="h-4 w-4" aria-hidden="true" />} label="Phone">
                       {profile?.phone || "Added with your first order"}
                     </Detail>
-                    <Detail icon={<MapPin className="h-4 w-4" aria-hidden="true" />} label="Email">
+<Detail icon={<Mail className="h-4 w-4" aria-hidden="true" />} label="Email">
                       {email || "—"}
                     </Detail>
                   </div>
