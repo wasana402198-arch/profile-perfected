@@ -88,23 +88,85 @@ function OrdersDesk() {
 
   const totalValue = rows.reduce((s, o) => s + o.total, 0);
 
+  const filtersActive = search.trim() !== "" || status !== "all" || pay !== "all" || rider !== "all";
+  const clearFilters = () => {
+    setSearch("");
+    setStatus("all");
+    setPay("all");
+    setRider("all");
+  };
+
+  // Two-tap shortcuts for the jobs staff actually do all shift.
+  const quickFilters: { key: string; label: string; count: number; active: boolean; apply: () => void }[] = [
+    {
+      key: "live",
+      label: "Live",
+      count: state.orders.filter((o) => !["delivered", "cancelled"].includes(o.status)).length,
+      active: false,
+      apply: clearFilters,
+    },
+    {
+      key: "unassigned",
+      label: "Needs rider",
+      count: state.orders.filter((o) => !o.riderId && !["delivered", "cancelled"].includes(o.status)).length,
+      active: rider === "unassigned",
+      apply: () => setRider(rider === "unassigned" ? "all" : "unassigned"),
+    },
+    {
+      key: "unverified",
+      label: "To verify",
+      count: state.orders.filter((o) => o.payment.status === "pending").length,
+      active: pay === "pending",
+      apply: () => setPay(pay === "pending" ? "all" : "pending"),
+    },
+  ];
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-[11px] font-black uppercase tracking-[0.3em] text-lux/70">
             Order desk
           </p>
-          <h1 className="mt-1 font-hero num-lux text-4xl tracking-wide">Orders</h1>
+          <h1 className="mt-1 font-hero num-lux text-3xl tracking-wide sm:text-4xl">Orders</h1>
           <p className="mt-1 text-sm text-slate-dim">
             {rows.length} order{rows.length === 1 ? "" : "s"} shown · {money(totalValue)} in value
           </p>
         </div>
       </header>
 
+      {/* Quick filters: one tap for the three shifts staff care about */}
+      <div className="-mx-3 flex gap-2 overflow-x-auto px-3 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
+        {quickFilters.map((q) => (
+          <button
+            key={q.key}
+            type="button"
+            onClick={q.apply}
+            aria-pressed={q.active}
+            className={
+              q.active
+                ? "inline-flex shrink-0 items-center gap-2 rounded-full border border-lux/60 bg-lux/15 px-3.5 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-lux"
+                : "inline-flex shrink-0 items-center gap-2 rounded-full border border-lux/20 px-3.5 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-mist transition hover:border-lux/50 hover:text-frost"
+            }
+          >
+            {q.label}
+            <span className="num-lux text-sm">{q.count}</span>
+          </button>
+        ))}
+        {filtersActive ? (
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-transparent px-3 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-slate-dim transition hover:text-ruby"
+          >
+            <X className="h-3.5 w-3.5" /> Clear
+          </button>
+        ) : null}
+      </div>
+
       <Panel bodyClassName="p-4">
-        <div className="grid gap-3 md:grid-cols-4">
-          <Field label="Search" className="md:col-span-1">
+        <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+          <Field label="Search" className="sm:col-span-2 md:col-span-1">
             <div className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-dim" />
               <input
@@ -154,6 +216,7 @@ function OrdersDesk() {
           </Field>
         </div>
       </Panel>
+
 
       <div className="space-y-3">
         {rows.map((o) => (
