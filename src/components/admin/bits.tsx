@@ -181,14 +181,14 @@ export function StatCard({
   const t = TONES[tone];
   return (
     <div
-      className={cn("panel-lux relative overflow-hidden p-5", t.ring)}
+      className={cn("panel-lux relative overflow-hidden p-4 sm:p-5", t.ring)}
       style={{ backgroundImage: `radial-gradient(420px 140px at 100% 0%, ${t.glow}, transparent 70%)` }}
     >
-      <div className="flex items-start justify-between gap-3">
-        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-dim">{label}</p>
-        <span className={cn("opacity-90", t.text)}>{icon}</span>
+      <div className="flex items-start justify-between gap-2">
+        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-dim sm:tracking-[0.22em]">{label}</p>
+        <span className={cn("shrink-0 opacity-90", t.text)}>{icon}</span>
       </div>
-      <p className={cn("num-lux mt-3 text-3xl", t.text)}>{value}</p>
+      <p className={cn("num-lux mt-2 text-2xl sm:mt-3 sm:text-3xl", t.text)}>{value}</p>
       <div className="mt-1 flex items-center gap-2">
         {hint ? <p className="text-[11px] text-slate-dim">{hint}</p> : null}
         {typeof trend === "number" ? (
