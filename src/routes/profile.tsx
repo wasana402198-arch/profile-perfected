@@ -817,7 +817,7 @@ function EmptyState({
   title: string;
   body: string;
   actionLabel: string;
-  to: string;
+  to: "/" | "/cart";
 }) {
   return (
     <div className="rounded-[1.75rem] border-2 border-dashed border-charcoal/15 bg-white/50 px-5 py-7 text-center">

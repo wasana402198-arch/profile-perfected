@@ -43,7 +43,7 @@ export function ProfileBanner({
       className="mt-5 overflow-hidden rounded-[2rem] border-2 border-charcoal/10 bg-charcoal text-cream shadow-[0_26px_60px_rgba(20,14,10,0.28)]"
     >
       {/* banner */}
-      <div className="relative h-24 w-full sm:h-52">
+      <div className="relative h-20 w-full sm:h-52">
         <img
           src={bannerImage}
           alt="Charcoal grill embers"
@@ -68,7 +68,7 @@ export function ProfileBanner({
                 width={816}
                 height={816}
                 loading="lazy"
-                className="h-16 w-16 rounded-[1.1rem] border-2 border-flame object-cover sm:h-28 sm:w-28 sm:rounded-[1.3rem]" decoding="async" />
+                className="h-14 w-14 rounded-[1.1rem] border-2 border-flame object-cover sm:h-28 sm:w-28 sm:rounded-[1.3rem]" decoding="async" />
             </span>
             {canEditPhoto && (
               <>
@@ -107,12 +107,8 @@ export function ProfileBanner({
           </div>
         </div>
 
-        <dl className="grid grid-cols-3 gap-3 text-center">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-2xl border border-cream/10 bg-cream/10 px-4 py-3 backdrop-blur"
-            >
+        <dl className="grid grid-cols-1 gap-2 text-center sm:grid-cols-3 sm:gap-3">
+  
               <dt className="font-body text-[10px] uppercase tracking-widest text-cream/60">
                 {stat.label}
               </dt>
