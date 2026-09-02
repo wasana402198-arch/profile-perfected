@@ -79,7 +79,7 @@ function TiltCard({
           ? undefined
           : { rotateX, rotateY, x: shiftX, y: shiftY, transformStyle: "preserve-3d" }
       }
-      className={`slice-card ${card.lift}`}
+      className={`slice-card w-[74vw] max-w-[18rem] shrink-0 snap-center first:ml-[2vw] sm:w-full sm:max-w-[22rem] sm:shrink sm:snap-align-none sm:first:ml-0 ${card.lift}`}
     >
       <div className="slice-card__inner">
         <img
