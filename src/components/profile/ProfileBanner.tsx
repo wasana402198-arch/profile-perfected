@@ -108,6 +108,11 @@ export function ProfileBanner({
         </div>
 
         <dl className="grid grid-cols-1 gap-2 text-center sm:grid-cols-3 sm:gap-3">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`rounded-2xl border border-cream/10 bg-cream/10 px-3 py-2 backdrop-blur sm:px-4 sm:py-3 ${i > 0 ? "hidden sm:block" : ""}`}
+            >
   
               <dt className="font-body text-[10px] uppercase tracking-widest text-cream/60">
                 {stat.label}
