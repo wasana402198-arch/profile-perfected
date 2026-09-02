@@ -106,11 +106,9 @@ function Index() {
 
   return (
     <div className="relative overflow-x-clip bg-cream">
-      {/* scroll-zoom track for the hero (desktop only — mobile keeps a single clean screen) */}
-      <div ref={heroTrackRef} className={zoom ? "relative h-[170vh]" : "relative"}>
+      <div className="relative">
       <motion.div
-        style={zoom ? { scale: heroScale, opacity: heroOpacity } : undefined}
-        className={`${zoom ? "sticky top-0 h-screen" : "relative min-h-[86svh] sm:min-h-screen"} origin-top overflow-hidden will-change-transform`}
+        className="relative min-h-[86svh] overflow-hidden sm:min-h-screen"
       >
 
       {/* red wave backdrop behind the hero band */}
