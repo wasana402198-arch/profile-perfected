@@ -79,7 +79,7 @@ function TiltCard({
           ? undefined
           : { rotateX, rotateY, x: shiftX, y: shiftY, transformStyle: "preserve-3d" }
       }
-      className={`slice-card ${card.lift}`}
+      className={`slice-card w-[74vw] max-w-[18rem] shrink-0 snap-center first:ml-[2vw] sm:w-full sm:max-w-[22rem] sm:shrink sm:snap-align-none sm:first:ml-0 ${card.lift}`}
     >
       <div className="slice-card__inner">
         <img
@@ -180,11 +180,15 @@ export function SliceGallery() {
           </motion.div>
         </div>
 
-        <div className="relative z-10 mt-12 grid grid-cols-1 justify-items-center gap-8 sm:mt-16 sm:grid-cols-3 sm:gap-4">
+        {/* mobile: swipeable snap-carousel with a peek of the next card; sm+: original 3-column tilt grid */}
+        <div className="relative z-10 mt-12 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:mt-16 sm:grid sm:grid-cols-3 sm:justify-items-center sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0">
           {CARDS.map((card, i) => (
             <TiltCard key={card.src} card={card} index={i} mx={mx} my={my} />
           ))}
         </div>
+        <p className="mt-2 text-center font-body text-[11px] uppercase tracking-[0.22em] text-charcoal/40 sm:hidden" aria-hidden="true">
+          Swipe to explore
+        </p>
       </div>
     </section>
   );
