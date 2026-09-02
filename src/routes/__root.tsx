@@ -175,7 +175,8 @@ function RootComponent() {
           <SoundProvider />
         </>
       ) : null}
-      <SiteLoader />
+      {/* Staff consoles skip the theatre intro — they need the data instantly. */}
+      {!isConsole ? <SiteLoader /> : null}
       <Toaster position="top-right" richColors closeButton />
     </QueryClientProvider>
   );
