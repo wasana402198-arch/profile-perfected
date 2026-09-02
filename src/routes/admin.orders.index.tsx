@@ -355,8 +355,21 @@ function OrdersDesk() {
           </Panel>
         ))}
         {rows.length === 0 ? (
-          <Panel bodyClassName="p-12 text-center text-sm text-slate-dim">
-            No orders match these filters.
+          <Panel bodyClassName="p-10 text-center">
+            <ClipboardList className="mx-auto h-8 w-8 text-lux/50" />
+            <p className="mt-3 text-sm font-bold text-frost">
+              {filtersActive ? "No orders match these filters" : "No orders yet tonight"}
+            </p>
+            <p className="mt-1 text-[12px] text-slate-dim">
+              {filtersActive
+                ? "Try widening the search or clearing the filters."
+                : "New tickets appear here the moment a customer checks out."}
+            </p>
+            {filtersActive ? (
+              <div className="mt-4 flex justify-center">
+                <GhostButton onClick={clearFilters}>Clear filters</GhostButton>
+              </div>
+            ) : null}
           </Panel>
         ) : null}
       </div>
