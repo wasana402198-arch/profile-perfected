@@ -97,15 +97,7 @@ function Index() {
     document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const isMobile = useIsMobile();
-  const heroTrackRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroTrackRef,
-    offset: ["start start", "end start"],
-  });
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.35]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0]);
-  const zoom = !reduce && !isMobile;
+  // scroll-zoom hero removed — hero stays fixed size on all screens
   const rise = (delay: number) => ({
     initial: reduce ? { opacity: 0 } : { opacity: 0, y: 36 },
     animate: { opacity: 1, y: 0 },
