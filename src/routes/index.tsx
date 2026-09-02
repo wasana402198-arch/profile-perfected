@@ -1,11 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { Menu, X, UserRound, LogIn } from "lucide-react";
-import { toast } from "sonner";
+import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
-import { useSession } from "@/hooks/use-session";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 
 
